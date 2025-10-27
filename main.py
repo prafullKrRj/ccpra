@@ -1,20 +1,3 @@
-# from flask import Flask
-# # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
-# # called `app` in `main.py`.
-# app = Flask(__name__)
-# @app.route("/")
-# def hello():
-#     """Return a friendly HTTP greeting.
-#     Returns:
-#         A string with the words 'Hello World!'.
-#     """
-#     return "Hello World!"
-# if __name__ == "__main__":
-#     # This is used when running locally only. When deploying to Google App
-#     # Engine, a webserver process such as Gunicorn will serve the app. You
-#     # can configure startup instructions by adding `entrypoint` to app.yaml.
-#     app.run(host="127.0.0.1", port=8080, debug=True)
-
 from flask import Flask
 
 app = Flask(__name__)
@@ -30,6 +13,16 @@ def hello():
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team Project</title>
     <style>
+        /* Define the new color palette */
+        :root {
+            --color-primary: #00b4d8; /* Bright Cyan/Blue */
+            --color-secondary: #0077b6; /* Darker Blue/Indigo */
+            --color-text-light: #666;
+            --color-text-dark: #333;
+            --color-background-light: rgba(255, 255, 255, 0.95);
+            --color-section-bg: #f8f9fa;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -38,7 +31,8 @@ def hello():
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Updated Gradient */
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -47,7 +41,7 @@ def hello():
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--color-background-light);
             border-radius: 20px;
             padding: 50px;
             max-width: 900px;
@@ -68,7 +62,7 @@ def hello():
 
         h1 {
             font-size: 2.5rem;
-            color: #667eea;
+            color: var(--color-primary); /* Updated Color */
             text-align: center;
             margin-bottom: 20px;
             font-weight: 700;
@@ -76,7 +70,7 @@ def hello():
 
         .subtitle {
             text-align: center;
-            color: #666;
+            color: var(--color-text-light);
             font-size: 1.2rem;
             margin-bottom: 40px;
         }
@@ -87,27 +81,32 @@ def hello():
 
         .team-title {
             font-size: 1.8rem;
-            color: #764ba2;
+            color: var(--color-secondary); /* Updated Color */
             text-align: center;
             margin-bottom: 30px;
             font-weight: 600;
         }
 
         .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* Modified to better center a single card */
+            display: flex; 
+            justify-content: center;
             gap: 20px;
             margin-bottom: 40px;
         }
 
         .team-member {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Updated Gradient */
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
             padding: 25px;
             border-radius: 15px;
             text-align: center;
             color: white;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            /* Ensure single card has a max width */
+            max-width: 300px; 
+            width: 100%;
         }
 
         .team-member:hover {
@@ -132,7 +131,7 @@ def hello():
         }
 
         .info-section {
-            background: #f8f9fa;
+            background: var(--color-section-bg);
             padding: 30px;
             border-radius: 15px;
             margin-top: 30px;
@@ -140,19 +139,19 @@ def hello():
 
         .info-title {
             font-size: 1.5rem;
-            color: #667eea;
+            color: var(--color-primary); /* Updated Color */
             margin-bottom: 15px;
             font-weight: 600;
         }
 
         .info-text {
-            color: #555;
+            color: var(--color-text-light);
             line-height: 1.8;
             font-size: 1.1rem;
         }
 
         .highlight {
-            color: #764ba2;
+            color: var(--color-secondary); /* Updated Color */
             font-weight: 600;
         }
 
@@ -172,8 +171,10 @@ def hello():
                 font-size: 2rem;
             }
             
+            /* Ensure it stays centered on mobile */
             .team-grid {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -184,31 +185,14 @@ def hello():
         <p class="subtitle">A Flask-based Web Application for Cloud Computing</p>
         
         <div class="team-section">
-            <h2 class="team-title">👥 Our Team Members</h2>
+            <h2 class="team-title">👥 Our Team Member</h2>
             
             <div class="team-grid">
+                <!-- Single Team Member Card -->
                 <div class="team-member">
-                    <div class="member-icon">👨‍💻</div>
-                    <div class="member-name">Prafull Kumar</div>
-                    <div class="member-role">Developer</div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-icon">👨‍💻</div>
-                    <div class="member-name">Ashutosh Senapati</div>
-                    <div class="member-role">Developer</div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-icon">👨‍💻</div>
-                    <div class="member-name">Nepal Singh</div>
-                    <div class="member-role">Developer</div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-icon">👨‍💻</div>
-                    <div class="member-name">Mayur Rishi</div>
-                    <div class="member-role">Developer</div>
+                    <div class="member-icon">👤</div>
+                    <div class="member-name">Abhishek Kumar</div>
+                    <div class="member-role">Lead Developer</div>
                 </div>
             </div>
         </div>
@@ -235,4 +219,3 @@ def hello():
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
-
